@@ -121,7 +121,7 @@ class DinnerRecommender extends HTMLElement {
 
     const recommendationImage = document.createElement('img');
     recommendationImage.setAttribute('class', 'recommendation-image');
-    recommendationImage.src = `https://source.unsplash.com/random/400x300/?${selectedDish.imageKeyword}&_=${new Date().getTime()}`;
+    recommendationImage.src = `https://picsum.photos/400/300?random=${Math.random()}`; // Switched to Picsum for debugging
     recommendationImage.alt = selectedDish.name;
     container.appendChild(recommendationImage);
   }
