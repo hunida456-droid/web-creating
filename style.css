@@ -1,19 +1,50 @@
+:root {
+  --background-color: #f0f2f5;
+  --text-color: #333;
+  --container-background: white;
+}
+
+body.dark-mode {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --container-background: #1e1e1e;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #f0f2f5;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .container {
   text-align: center;
+  padding: 2rem;
+  background-color: var(--container-background);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 h1 {
   font-size: 3rem;
-  color: #333;
+  color: var(--text-color);
   margin-bottom: 2rem;
 }
