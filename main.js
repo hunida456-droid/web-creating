@@ -7,7 +7,7 @@ class DinnerRecommender extends HTMLElement {
     wrapper.setAttribute('class', 'wrapper');
 
     const button = document.createElement('button');
-    button.textContent = '今日の夕食を提案';
+    button.textContent = '今日の運命の晩ご飯は？'; // More humorous Japanese text
 
     const recommendationContainer = document.createElement('div');
     recommendationContainer.setAttribute('class', 'recommendation-container');
@@ -85,16 +85,16 @@ class DinnerRecommender extends HTMLElement {
 
   generateRecommendation(container) {
     const dishes = [
-      { name: "寿司 (Sushi)", humor: "작은 우주, 한 입의 행복! 우주여행 떠나실 분?", localImageUrl: "./images/sushi.jpg" },
-      { name: "ラーメン (Ramen)", humor: "국물에 풍덩! 면치기는 필수! 오늘 밤, 면과 함께 춤을!", localImageUrl: "./images/ramen.jpg" },
-      { name: "天ぷら (Tempura)", humor: "바삭함의 마법! 한 입 베어 물면 스트레스가 사르르~", localImageUrl: "./images/tempura.jpg" },
-      { name: "うどん (Udon)", humor: "목 넘김이 예술! 호로록~ 하면 마음까지 따뜻!", localImageUrl: "./images/udon.jpg" },
-      { name: "カレーライス (Curry Rice)", humor: "일본의 국민 음식! 사랑과 스파이스의 환상 조합!", localImageUrl: "./images/curry-rice.jpg" },
-      { name: "焼肉 (Yakiniku)", humor: "연기 속에서 고기가 춤을 춘다! 오늘은 내가 고기왕!", localImageUrl: "./images/yakiniku.jpg" },
-      { name: "お好み焼き (Okonomiyaki)", humor: "뒤집기의 달인이 될 시간! 내 마음대로 만드는 행복!", localImageUrl: "./images/okonomiyaki.jpg" },
-      { name: "しゃぶしゃぶ (Shabu-shabu)", humor: "끓는 육수 속, 고기가 예술로 승화하는 순간!", localImageUrl: "./images/shabu-shabu.jpg" },
-      { name: "味噌汁 (Miso Soup)", humor: "일본인의 소울 푸드! 한 모금 마시면 힘이 불끈!", localImageUrl: "./images/miso-soup.jpg" },
-      { name: "焼き鳥 (Yakitori)", humor: "꼬치에 꽂힌 작은 행복! 하나씩 뽑아 먹는 재미!", localImageUrl: "./images/yakitori.jpg" }
+      { name: "寿司 (Sushi)", humor: "小さな宇宙、一口の幸せ！宇宙旅行に出かけませんか？" },
+      { name: "ラーメン (Ramen)", humor: "スープにドボン！麺すすりは必須！今夜は麺と一緒にダンスを！" },
+      { name: "天ぷら (Tempura)", humor: "サクサク魔法！一口食べればストレスもとろける！" },
+      { name: "うどん (Udon)", humor: "喉越しツルツル、心のオアシス！ずるずるっと温まろう！" },
+      { name: "カレーライス (Curry Rice)", humor: "日本の国民食！愛とスパイスのファンタジー融合！" },
+      { name: "焼肉 (Yakiniku)", humor: "煙の中で肉が踊る！今夜の肉の王様は私だ！" },
+      { name: "お好み焼き (Okonomiyaki)", humor: "ひっくり返す達人になる時！自分だけの幸せを作ろう！" },
+      { name: "しゃぶしゃぶ (Shabu-shabu)", humor: "沸騰する出汁の中、肉が芸術に昇華する瞬間！" },
+      { name: "味噌汁 (Miso Soup)", humor: "日本人のソウルフード！一口飲めば力が湧いてくる！" },
+      { name: "焼き鳥 (Yakitori)", humor: "串に刺さった小さな幸せ！一本ずつ味わう楽しみ！" }
     ];
     
     container.innerHTML = '';
@@ -113,7 +113,7 @@ class DinnerRecommender extends HTMLElement {
 
     const recommendationImage = document.createElement('img');
     recommendationImage.setAttribute('class', 'recommendation-image');
-    recommendationImage.src = selectedDish.localImageUrl;
+    recommendationImage.src = `https://loremflickr.com/400/300/cute,animals?random=${Math.random()}`; // Random cute animal image
     recommendationImage.alt = selectedDish.name;
     container.appendChild(recommendationImage);
   }
