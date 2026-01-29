@@ -1,4 +1,4 @@
-class LottoGenerator extends HTMLElement {
+class DinnerRecommender extends HTMLElement {
   constructor() {
     super();
     const shadow = this.attachShadow({ mode: 'open' });
@@ -7,10 +7,10 @@ class LottoGenerator extends HTMLElement {
     wrapper.setAttribute('class', 'wrapper');
 
     const button = document.createElement('button');
-    button.textContent = 'Generate Numbers';
+    button.textContent = '今日の夕食を提案';
 
-    const numbersContainer = document.createElement('div');
-    numbersContainer.setAttribute('class', 'numbers-container');
+    const recommendationContainer = document.createElement('div');
+    recommendationContainer.setAttribute('class', 'recommendation-container');
 
     const style = document.createElement('style');
     style.textContent = `
@@ -38,73 +38,53 @@ class LottoGenerator extends HTMLElement {
         box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       }
 
-      .numbers-container {
-        display: flex;
-        gap: 10px;
-      }
-
-      .number {
+      .recommendation-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        font-size: 1.5rem;
+        min-height: 50px;
+      }
+
+      .recommendation {
+        font-size: 2rem;
         font-weight: bold;
-        color: white;
-        background-color: #f44336;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        color: #db4437;
+        padding: 20px;
+        background-color: #fce8e6;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       }
     `;
 
     shadow.appendChild(style);
     shadow.appendChild(wrapper);
     wrapper.appendChild(button);
-    wrapper.appendChild(numbersContainer);
+    wrapper.appendChild(recommendationContainer);
 
     button.addEventListener('click', () => {
-      this.generateNumbers(numbersContainer);
+      this.generateRecommendation(recommendationContainer);
     });
   }
 
-  generateNumbers(container) {
+  generateRecommendation(container) {
+    const dishes = [
+      "寿司 (Sushi)", "ラーメン (Ramen)", "天ぷら (Tempura)", "うどん (Udon)", 
+      "カレーライス (Curry Rice)", "焼肉 (Yakiniku)", "お好み焼き (Okonomiyaki)", 
+      "しゃぶしゃぶ (Shabu-shabu)", "味噌汁 (Miso Soup)", "焼き鳥 (Yakitori)"
+    ];
+    
     container.innerHTML = '';
-    const numbers = new Set();
-    while (numbers.size < 6) {
-      const randomNumber = Math.floor(Math.random() * 45) + 1;
-      numbers.add(randomNumber);
-    }
+    const randomIndex = Math.floor(Math.random() * dishes.length);
+    const dish = dishes[randomIndex];
 
-    const sortedNumbers = Array.from(numbers).sort((a, b) => a - b);
-
-    for (const number of sortedNumbers) {
-      const numberDiv = document.createElement('div');
-      numberDiv.setAttribute('class', 'number');
-      numberDiv.textContent = number;
-      this.setNumberColor(numberDiv, number)
-      container.appendChild(numberDiv);
-    }
-  }
-
-  setNumberColor(element, number) {
-    let color;
-    if (number <= 10) {
-      color = '#f4b400'; // yellow
-    } else if (number <= 20) {
-      color = '#4285f4'; // blue
-    } else if (number <= 30) {
-      color = '#db4437'; // red
-    } else if (number <= 40) {
-      color = '#0f9d58'; // green
-    } else {
-      color = '#607d8b'; // grey
-    }
-    element.style.backgroundColor = color;
+    const recommendationDiv = document.createElement('div');
+    recommendationDiv.setAttribute('class', 'recommendation');
+    recommendationDiv.textContent = dish;
+    container.appendChild(recommendationDiv);
   }
 }
 
-customElements.define('lotto-generator', LottoGenerator);
+customElements.define('dinner-recommender', DinnerRecommender);
 
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
